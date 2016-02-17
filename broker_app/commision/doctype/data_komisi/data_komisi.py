@@ -11,15 +11,30 @@ class DataKomisi(Document):
 		listing_count=0
 		selling_count=0
 		koor_count=0
+		total_komisi=0
+		if self.is_co and self.is_co==1:
+			total_komisi=commision_co
 		for marketing in self.commision_list:
-			if marketing.type == "Listing":
+			if marketing.type == "Listing" :
 				listing_count=listing_count+1
+				total_komisi=total_komisi+marketing.bruto
 			elif marketing.type == "Selling":
 				selling_count=selling_count+1
+				total_komisi=total_komisi+marketing.bruto
 			elif marketing.type == "Koordinator":
 				koor_count=koor_count+1
-		if listing_count>2 or selling_count>2 or koor_count>2:
-			frappe.throw("Maximum 2 marketing untuk Selling / Listing / Koordinator")
+				total_komisi=total_komisi+marketing.bruto
+		if listing_count>1 or selling_count>2 or koor_count>2:
+			frappe.throw("Maximum 2 marketing untuk Selling / 1 untuk Listing / 2 untuk Koordinator")
+		if total_komisi>100:
+			frappe.throw("Maximum Komisi adalah 100%")
+		for marketing in self.commision_list:
+			if marketing.type == "Listing" :
+				marketing.tut=0
+			elif marketing.type == "Selling":
+				marketing.tut=1/selling_count
+			elif marketing.type == "Koordinator":
+				marketing.tut=0
 
 	def on_submit(self):
 		pass
