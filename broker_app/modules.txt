@@ -1,1 +1,4 @@
 Broker App
+Sales
+Administration
+Commision
