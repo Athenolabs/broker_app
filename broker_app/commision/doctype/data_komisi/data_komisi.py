@@ -37,7 +37,29 @@ class DataKomisi(Document):
 				marketing.tut=0
 
 	def on_submit(self):
-		pass
+		for marketing in self.commision_list:
+			if marketing.pv>0:
+				record = frappe.get_doc({
+			 		"doctype":"PV",
+			 		"marketing":marketing.marketing,
+			 		"point":marketing.pv,
+			 		"data_komisi":self.name,
+			 		"idx":marketing.name,
+			 		"posting_date":self.date
+				})
+				record.insert()
+				record.submit()
+			if marketing.tut>0
+				record = frappe.get_doc({
+			 		"doctype":"TUT",
+			 		"marketing":marketing.marketing,
+			 		"point":marketing.tut
+			 		"data_komisi":self.name,
+			 		"idx":marketing.name,
+			 		"posting_date":self.date
+				})
+				record.insert()
+				record.submit()
 
 	def get_marketing_list(self):
 		if self.data_transaksi:
@@ -48,3 +70,7 @@ class DataKomisi(Document):
 				dt.nama=row[1]
 				dt.kantor=row[2]
 				dt.type=row[3]
+
+	def on_cancel(self):
+		frappe.db.sql("""update tabPV set docstatus=2 where data_komisi="{}" """.format(self.name),as_list=1)
+		frappe.db.sql("""update tabTUT set docstatus=2 where data_komisi="{}" """.format(self.name),as_list=1)
