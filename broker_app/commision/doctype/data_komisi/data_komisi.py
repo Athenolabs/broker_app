@@ -49,7 +49,7 @@ class DataKomisi(Document):
 				})
 				record.insert()
 				record.submit()
-			if marketing.tut>0
+			if marketing.tut>0:
 				record = frappe.get_doc({
 			 		"doctype":"TUT",
 			 		"marketing":marketing.marketing,
