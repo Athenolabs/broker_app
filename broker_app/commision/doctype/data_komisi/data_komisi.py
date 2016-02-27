@@ -53,7 +53,7 @@ class DataKomisi(Document):
 				record = frappe.get_doc({
 			 		"doctype":"TUT",
 			 		"marketing":marketing.marketing,
-			 		"point":marketing.tut
+			 		"point":marketing.tut,
 			 		"data_komisi":self.name,
 			 		"idx":marketing.name,
 			 		"posting_date":self.date
