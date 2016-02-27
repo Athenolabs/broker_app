@@ -7,7 +7,6 @@ frappe.query_reports["Top Unit Selling Summary"] = {
 			"fieldname":"from",
 			"label": __("From Date"),
 			"fieldtype": "Date",
-			"default": frappe.defaults.get_default("year_start_date"),
 			"width": "80",
 			"reqd":1
 		},
