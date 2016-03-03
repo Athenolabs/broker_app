@@ -11,8 +11,8 @@ app_email = "bobzz.zone@gmail.com"
 app_version = "0.0.1"
 app_license = "MIT"
 website_context = {
-	"splash_image": 	"/private/files/1sthomelogo.png",
-	"favicon": "/private/files/apple-icon-72x72.png"
+	"splash_image": 	"/files/1sthomelogo.png",
+	"favicon": "/files/apple-icon-72x72.png"
 }
 # Includes in <head>
 # ------------------
