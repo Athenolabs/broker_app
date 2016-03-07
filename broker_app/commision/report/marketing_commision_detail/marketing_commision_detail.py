@@ -6,7 +6,7 @@ import frappe
 
 def execute(filters=None):
 	columns, data = ["Keterangan:Data:400","Bruto:Currency:200","PPH:Currency:200","Komisi:Currency:200","PV:Currency:200"], []
-	data.append("{} - {}".format(filters.get("marketing"),frappe.db.get_value("Marketing",filters.get("marketing"),"nama")),"","","","")
+	data.append("{} - {}".format(filters.get("marketing"),frappe.db.get_value("nama")),"","","","")
 	data.append("{} - {}".format(filters.get("from"),filters.get("to")),"","","","")
 	data.append(["Data Transaksi Secondary","","","",""])
 	second = frappe.db.sql("""select dk.alamat,cmd.commision_value,cmd.pph,cmd.net_commision,cmd.pv
