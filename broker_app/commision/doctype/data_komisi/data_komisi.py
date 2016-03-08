@@ -63,7 +63,7 @@ class DataKomisi(Document):
 
 	def get_marketing_list(self):
 		if self.data_transaksi:
-			data = frappe.db.sql("""select md.marketing,md.nama,md.kantor,md.type,m.commision from `tabTransaction Marketing Detail` md join tabMarketing m on md.marketing=m.marketing where md.parent="{}" """.format(self.data_transaksi),as_list=1)
+			data = frappe.db.sql("""select md.marketing,md.nama,md.kantor,md.type,m.commision from `tabTransaction Marketing Detail` md join tabMarketing m on md.marketing=m.name where md.parent="{}" """.format(self.data_transaksi),as_list=1)
 			for row in data:
 				dt = self.append('commision_list', {})
 				dt.marketing=row[0]
