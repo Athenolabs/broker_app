@@ -13,7 +13,7 @@ class DataKomisi(Document):
 		koor_count=0
 		total_komisi=0
 		if self.is_co and self.is_co==1:
-			total_komisi=commision_co
+			total_komisi=self.commision_co
 		for marketing in self.commision_list:
 			if marketing.type == "Listing" :
 				listing_count=listing_count+1
@@ -63,13 +63,14 @@ class DataKomisi(Document):
 
 	def get_marketing_list(self):
 		if self.data_transaksi:
-			data = frappe.db.sql("""select marketing,nama,kantor,type from `tabTransaction Marketing Detail` where parent="{}" """.format(self.data_transaksi),as_list=1)
+			data = frappe.db.sql("""select md.marketing,md.nama,md.kantor,md.type,m.commision from `tabTransaction Marketing Detail` md join tabMarketing m on md.marketing=m.marketing where md.parent="{}" """.format(self.data_transaksi),as_list=1)
 			for row in data:
 				dt = self.append('commision_list', {})
 				dt.marketing=row[0]
 				dt.nama=row[1]
 				dt.kantor=row[2]
 				dt.type=row[3]
+				dt.commision=row[4]
 
 	def on_cancel(self):
 		frappe.db.sql("""update tabPV set docstatus=2 where data_komisi="{}" """.format(self.name),as_list=1)
