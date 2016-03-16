@@ -64,6 +64,7 @@ class DataKomisi(Document):
 	def get_marketing_list(self):
 		if self.data_transaksi:
 			data = frappe.db.sql("""select md.marketing,md.nama,md.kantor,md.type,m.commision from `tabTransaction Marketing Detail` md join tabMarketing m on md.marketing=m.name where md.parent="{}" """.format(self.data_transaksi),as_list=1)
+			self.commision_list=[]
 			for row in data:
 				dt = self.append('commision_list', {})
 				dt.marketing=row[0]
@@ -71,7 +72,24 @@ class DataKomisi(Document):
 				dt.kantor=row[2]
 				dt.type=row[3]
 				dt.commision=row[4]
-
+			if self.primary_project !="" and self.type=="Jual Primary":
+				primary=frappe.db.get("Primary Project",{"name":self.primary_project})
+				if primary.Koordinator and primary.Koordinator!="":
+					koordinator = frappe.db.get("Marketing",{"name":primary.koordinator})
+					dt = self.append('commision_list', {})
+					dt.marketing=primary.koordinator
+					dt.nama=koordinator.nama
+					dt.kantor=koordinator.kantor
+					dt.type="Koordinator"
+					dt.commision=primary.koor_commision
+				if primary.Listing and primary.Listing!="":
+					listing = frappe.db.get("Marketing",{"name":primary.listing})
+					dt = self.append('commision_list', {})
+					dt.marketing=primary.listing
+					dt.nama=listing.nama
+					dt.kantor=listing.kantor
+					dt.type="Koordinator"
+					dt.commision=primary.listing_commision
 	def on_cancel(self):
 		frappe.db.sql("""update tabPV set docstatus=2 where data_komisi="{}" """.format(self.name),as_list=1)
 		frappe.db.sql("""update tabTUT set docstatus=2 where data_komisi="{}" """.format(self.name),as_list=1)
