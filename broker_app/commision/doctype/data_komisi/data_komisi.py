@@ -72,24 +72,24 @@ class DataKomisi(Document):
 				dt.kantor=row[2]
 				dt.type=row[3]
 				dt.commision=row[4]
-			if self.primary_project !="" and self.type=="Jual Primary":
+			if self.primary_project  and self.type=="Jual Primary":
 				primary=frappe.db.get("Primary Project",{"name":self.primary_project})
-				if primary.Koordinator and primary.Koordinator!="":
+				if primary.Koordinator:
 					koordinator = frappe.db.get("Marketing",{"name":primary.koordinator})
-					dt = self.append('commision_list', {})
-					dt.marketing=primary.koordinator
-					dt.nama=koordinator.nama
-					dt.kantor=koordinator.kantor
-					dt.type="Koordinator"
-					dt.commision=primary.koor_commision
-				if primary.Listing and primary.Listing!="":
+					dt2 = self.append('commision_list', {})
+					dt2.marketing=primary.koordinator
+					dt2.nama=koordinator.nama
+					dt2.kantor=koordinator.kantor
+					dt2.type="Koordinator"
+					dt2.commision=primary.koor_commision
+				if primary.Listing :
 					listing = frappe.db.get("Marketing",{"name":primary.listing})
-					dt = self.append('commision_list', {})
-					dt.marketing=primary.listing
-					dt.nama=listing.nama
-					dt.kantor=listing.kantor
-					dt.type="Koordinator"
-					dt.commision=primary.listing_commision
+					dt3 = self.append('commision_list', {})
+					dt3.marketing=primary.listing
+					dt3.nama=listing.nama
+					dt3.kantor=listing.kantor
+					dt3.type="Koordinator"
+					dt3.commision=primary.listing_commision
 	def on_cancel(self):
 		frappe.db.sql("""update tabPV set docstatus=2 where data_komisi="{}" """.format(self.name),as_list=1)
 		frappe.db.sql("""update tabTUT set docstatus=2 where data_komisi="{}" """.format(self.name),as_list=1)
