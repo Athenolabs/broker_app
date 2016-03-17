@@ -5,7 +5,7 @@
 from __future__ import unicode_literals
 import frappe
 from frappe.model.document import Document
-
+from frappe import throw,_,msgprint
 class DataKomisi(Document):
 	def validate(self):
 		listing_count=0
@@ -74,7 +74,9 @@ class DataKomisi(Document):
 				dt.commision=row[4]
 			if self.primary_project  and self.type=="Jual Primary":
 				primary=frappe.db.get("Primary Project",{"name":self.primary_project})
+				frappe.msgprint(primary)
 				if primary.Koordinator:
+					frappe.msgprint("here")
 					koordinator = frappe.db.get("Marketing",{"name":primary.koordinator})
 					dt2 = self.append('commision_list', {})
 					dt2.marketing=primary.koordinator
