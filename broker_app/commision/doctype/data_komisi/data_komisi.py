@@ -74,9 +74,9 @@ class DataKomisi(Document):
 				dt.commision=row[4]
 			if self.primary_project  and self.type=="Jual Primary":
 				primary=frappe.db.get("Primary Project",{"name":self.primary_project})
-				frappe.msgprint(primary)
-				if primary.Koordinator:
-					frappe.msgprint("here")
+				#frappe.msgprint(primary)
+				if primary.koordinator:
+					#frappe.msgprint("here")
 					koordinator = frappe.db.get("Marketing",{"name":primary.koordinator})
 					dt2 = self.append('commision_list', {})
 					dt2.marketing=primary.koordinator
@@ -84,7 +84,7 @@ class DataKomisi(Document):
 					dt2.kantor=koordinator.kantor
 					dt2.type="Koordinator"
 					dt2.commision=primary.koor_commision
-				if primary.Listing :
+				if primary.listing :
 					listing = frappe.db.get("Marketing",{"name":primary.listing})
 					dt3 = self.append('commision_list', {})
 					dt3.marketing=primary.listing
