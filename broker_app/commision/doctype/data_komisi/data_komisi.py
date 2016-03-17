@@ -81,7 +81,7 @@ class DataKomisi(Document):
 					dt2 = self.append('commision_list', {})
 					dt2.marketing=primary.koordinator
 					dt2.nama=koordinator.nama
-					dt2.kantor=koordinator.kantor
+					dt2.kantor=koordinator.branch
 					dt2.type="Koordinator"
 					dt2.commision=primary.koor_commision
 				if primary.listing :
@@ -89,7 +89,7 @@ class DataKomisi(Document):
 					dt3 = self.append('commision_list', {})
 					dt3.marketing=primary.listing
 					dt3.nama=listing.nama
-					dt3.kantor=listing.kantor
+					dt3.kantor=listing.branch
 					dt3.type="Koordinator"
 					dt3.commision=primary.listing_commision
 	def on_cancel(self):
