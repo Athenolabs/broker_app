@@ -26,10 +26,11 @@ frappe.query_reports["Marketing Commision Detail"] = {
 		}
 	],
 	"formatter": function(row, cell, value, columnDef, dataContext, default_formatter) {
-		//value = default_formatter(row, cell, value, columnDef, dataContext);
-
-		if (value[1]=="" or value[0]=="Total") {
-			var $value = $(value).css("font-weight", "bold");
+		if (columnDef.df.fieldname=="Keterangan") {
+			if (dataContext[columnDef.df.fieldname]=="Total"){
+				value = $(value).css("font-weight", "bold");	
+			}
+			
 		}
 
 		return value;
