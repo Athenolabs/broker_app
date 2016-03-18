@@ -90,20 +90,18 @@ class DataKomisi(Document):
 					dt3.marketing=primary.listing
 					dt3.nama=listing.nama
 					dt3.kantor=listing.branch
-					dt3.type="Koordinator"
+					dt3.type="Listing"
 					dt3.commision=primary.listing_commision
 	def on_cancel(self):
 		frappe.db.sql("""update tabPV set docstatus=2 where data_komisi="{}" """.format(self.name),as_list=1)
 		frappe.db.sql("""update tabTUT set docstatus=2 where data_komisi="{}" """.format(self.name),as_list=1)
 def available_transaction(doctype, txt, searchfield, start, page_len, filters):
 	return frappe.db.sql("""select dt.name,dt.alamat from `tabData Transaksi` dt 
-		left join `tabData Komisi` dk on dk.data_transaksi=dt.name 
-		where dk.name is NULL and dt.docstatus=1 and ({key} like %(txt)s
-				or dt,alamat like %(txt)s)
-			{mcond}
+		left join `tabData Komisi` dk on dk.data_transaksi=dt.name and dk.docstatus<2
+		where dk.name is NULL and dt.docstatus=1 and (dt.name like %(txt)s
+				or dt.alamat like %(txt)s)
 		limit %(start)s, %(page_len)s""".format(**{
-			'key': searchfield,
-			'mcond':get_match_cond(doctype)
+			'key': searchfield
 		}), {
 			'txt': "%%%s%%" % txt,
 			'_txt': txt.replace("%", ""),
