@@ -24,5 +24,14 @@ frappe.query_reports["Marketing Commision Detail"] = {
 			"options": "Marketing",
 			"reqd":1
 		}
-	]
+	],
+	"formatter": function(row, cell, value, columnDef, dataContext, default_formatter) {
+		//value = default_formatter(row, cell, value, columnDef, dataContext);
+
+		if (value[1]=="" or value[0]=="Total") {
+			var $value = $(value).css("font-weight", "bold");
+		}
+
+		return value;
+	}
 }
