@@ -24,7 +24,7 @@ def execute(filters=None):
 		pph=pph+row[2]
 		komisi = komisi+row[3]
 		pv=pv+row[4]
-	data.append(["Total",bruto,pph,komisi,pv])
+	data.append(["<strong>Total</strong>",bruto,pph,komisi,pv])
 	data.append(["","","","",""])
 
 	data.append(["Data Transaksi Primary","","","",""])

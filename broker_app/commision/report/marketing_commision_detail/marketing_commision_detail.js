@@ -24,15 +24,5 @@ frappe.query_reports["Marketing Commision Detail"] = {
 			"options": "Marketing",
 			"reqd":1
 		}
-	],
-	"formatter": function(row, cell, value, columnDef, dataContext, default_formatter) {
-		if (columnDef.df.fieldname=="Keterangan") {
-			if (dataContext[columnDef.df.fieldname]=="Total"){
-				value = $(value).css("font-weight", "bold");	
-			}
-			
-		}
-
-		return value;
-	}
+	]
 }
