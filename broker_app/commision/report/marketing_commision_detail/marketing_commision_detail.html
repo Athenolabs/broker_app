@@ -1,9 +1,9 @@
 <h2 class="text-center">Marketing Report</h2>
-<h4 class="text-center">{%= filters.marketing%}</h4>
+<h4 class="text-center">{%= frappe.db.get_value("Marketing",filters.marketing, "nama")%}</h4>
 <h5 class="text-center">
-	{%= dateutil.str_to_user(filters.from_date) %}
+	{%= dateutil.str_to_user(filters.from) %}
 	{%= __("to") %}
-	{%= dateutil.str_to_user(filters.to_date) %}
+	{%= dateutil.str_to_user(filters.to) %}
 </h5>
 <hr>
 {% var count=1; %}
@@ -26,19 +26,134 @@
 				if (row["Keterangan"] == "Total" ) { 
 				%}
 					<td><strong>{%= row["Keterangan"] %}</strong></td>
+					<td style="text-align: right"><strong>{%= format_currency(row["Bruto"]) %}</strong></td>
+					<td style="text-align: right"><strong>{%= format_currency(row["PPH"]) %}</strong></td>
+					<td style="text-align: right"><strong>{%= format_currency(row["Komisi"]) %}</strong></td>
+					<td style="text-align: right"><strong>{%= format_currency(row["PV"]) %}</strong></td>						
 					{% i = l %}
 				{% } else { %}
 					<td>{%= row["Keterangan"] %}</td>
+					<td style="text-align: right">{%= format_currency(row["Bruto"]) %}</td>
+					<td style="text-align: right">{%= format_currency(row["PPH"]) %}</td>
+					<td style="text-align: right">{%= format_currency(row["Komisi"]) %}</td>
+					<td style="text-align: right">{%= format_currency(row["PV"]) %}</td>
 				{% } %}
 				
-				<td style="text-align: right">{%= format_currency(row["Bruto"]) %}</td>
-				<td style="text-align: right">{%= format_currency(row["PPH"]) %}</td>
-				<td style="text-align: right">{%= format_currency(row["Komisi"]) %}</td>
-				<td style="text-align: right">{%= format_currency(row["PV"]) %}</td>
+				
 				{% count=count+1 %}
 			</tr>
 		{% } %}
 	</tbody>
 </table>
-
+{% count=count+3; %}
+<h3>{%= data[count-1]["Keterangan"] %}</h3>
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<th style="width: 40%">Keterangan</th>
+			<th style="width: 15%">Bruto</th>
+			<th style="width: 15%">PPH</th>
+			<th style="width: 15%">Komisi</th>
+			<th style="width: 15%">PV</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for(var i=count,l=data.length; i<l; i++) { %}
+			<tr>
+				{% 
+				var row = data[i]; 
+				if (row["Keterangan"] == "Total" ) { 
+				%}
+					<td><strong>{%= row["Keterangan"] %}</strong></td>
+					<td style="text-align: right"><strong>{%= format_currency(row["Bruto"]) %}</strong></td>
+					<td style="text-align: right"><strong>{%= format_currency(row["PPH"]) %}</strong></td>
+					<td style="text-align: right"><strong>{%= format_currency(row["Komisi"]) %}</strong></td>
+					<td style="text-align: right"><strong>{%= format_currency(row["PV"]) %}</strong></td>						
+					{% i = l %}
+				{% } else { %}
+					<td>{%= row["Keterangan"] %}</td>
+					<td style="text-align: right">{%= format_currency(row["Bruto"]) %}</td>
+					<td style="text-align: right">{%= format_currency(row["PPH"]) %}</td>
+					<td style="text-align: right">{%= format_currency(row["Komisi"]) %}</td>
+					<td style="text-align: right">{%= format_currency(row["PV"]) %}</td>
+				{% } %}
+				{% count=count+1 %}
+			</tr>
+		{% } %}
+	</tbody>
+</table>
+{% count=count+3; %}
+<h3>{%= data[count-1]["Keterangan"] %}</h3>
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<th style="width: 40%">Keterangan</th>
+			<th style="width: 15%">Bruto</th>
+			<th style="width: 15%">PPH</th>
+			<th style="width: 15%">Komisi</th>
+			<th style="width: 15%">PV</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for(var i=count,l=data.length; i<l; i++) { %}
+			<tr>
+				{% 
+				var row = data[i]; 
+				if (row["Keterangan"] == "Total" ) { 
+				%}
+					<td><strong>{%= row["Keterangan"] %}</strong></td>
+					<td style="text-align: right"><strong>{%= format_currency(row["Bruto"]) %}</strong></td>
+					<td style="text-align: right"><strong>{%= format_currency(row["PPH"]) %}</strong></td>
+					<td style="text-align: right"><strong>{%= format_currency(row["Komisi"]) %}</strong></td>
+					<td style="text-align: right"><strong>{%= format_currency(row["PV"]) %}</strong></td>						
+					{% i = l %}
+				{% } else { %}
+					<td>{%= row["Keterangan"] %}</td>
+					<td style="text-align: right">{%= format_currency(row["Bruto"]) %}</td>
+					<td style="text-align: right">{%= format_currency(row["PPH"]) %}</td>
+					<td style="text-align: right">{%= format_currency(row["Komisi"]) %}</td>
+					<td style="text-align: right">{%= format_currency(row["PV"]) %}</td>
+				{% } %}
+				{% count=count+1 %}
+			</tr>
+		{% } %}
+	</tbody>
+</table>
+{% count=count+3; %}
+<h3>{%= data[count-1]["Keterangan"] %}</h3>
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<th style="width: 40%">Keterangan</th>
+			<th style="width: 15%">Bruto</th>
+			<th style="width: 15%">PPH</th>
+			<th style="width: 15%">Komisi</th>
+			<th style="width: 15%">PV</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for(var i=count,l=data.length; i<l; i++) { %}
+			<tr>
+				{% 
+				var row = data[i]; 
+				if (row["Keterangan"] == "Total" ) { 
+				%}
+					<td><strong>{%= row["Keterangan"] %}</strong></td>
+					<td style="text-align: right"><strong>{%= format_currency(row["Bruto"]) %}</strong></td>
+					<td style="text-align: right"><strong>{%= format_currency(row["PPH"]) %}</strong></td>
+					<td style="text-align: right"><strong>{%= format_currency(row["Komisi"]) %}</strong></td>
+					<td style="text-align: right"><strong>{%= format_currency(row["PV"]) %}</strong></td>						
+					{% i = l %}
+				{% } else { %}
+					<td>{%= row["Keterangan"] %}</td>
+					<td style="text-align: right">{%= format_currency(row["Bruto"]) %}</td>
+					<td style="text-align: right">{%= format_currency(row["PPH"]) %}</td>
+					<td style="text-align: right">{%= format_currency(row["Komisi"]) %}</td>
+					<td style="text-align: right">{%= format_currency(row["PV"]) %}</td>
+				{% } %}
+				{% count=count+1 %}
+			</tr>
+		{% } %}
+	</tbody>
+</table>
 <p class="text-right text-muted">Printed On {%= dateutil.str_to_user(dateutil.get_datetime_as_string()) %}</p>
