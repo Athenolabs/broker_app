@@ -6,9 +6,7 @@ import frappe
 
 def execute(filters=None):
 	columns, data = ["Keterangan:Data:400","Bruto:Currency:200","PPH:Currency:200","Komisi:Currency:200","PV:Currency:200"], []
-	data.append(["<strong>{} - {}</strong>".format(filters.get("marketing"),frappe.db.get_value("Marketing",filters.get("marketing"), "nama")),"","","",""])
-	data.append(["<strong>{} - {}</strong>".format(filters.get("from"),filters.get("to")),"","","",""])
-	data.append(["<strong>Data Transaksi Secondary</strong>","","","",""])
+	data.append(["Data Transaksi Secondary","","","",""])
 	second = frappe.db.sql("""select dk.alamat,cmd.commision_value,cmd.pph,cmd.net_commision,cmd.pv
 		from `tabCommision Marketing Detail` cmd 
 		join `tabData Komisi` dk on cmd.parent=dk.name 
@@ -24,10 +22,10 @@ def execute(filters=None):
 		pph=pph+row[2]
 		komisi = komisi+row[3]
 		pv=pv+row[4]
-	data.append(["<strong>Total</strong>",bruto,pph,komisi,pv])
+	data.append(["Total",bruto,pph,komisi,pv])
 	data.append(["","","","",""])
 
-	data.append(["<strong>Data Transaksi Primary</strong>","","","",""])
+	data.append(["Data Transaksi Primary","","","",""])
 	second = frappe.db.sql("""select dk.alamat,cmd.commision_value,cmd.pph,cmd.net_commision,cmd.pv
 		from `tabCommision Marketing Detail` cmd 
 		join `tabData Komisi` dk on cmd.parent=dk.name 
@@ -39,10 +37,10 @@ def execute(filters=None):
 		pph2=pph2+row[2]
 		komisi2 = komisi2+row[3]
 		pv2=pv2+row[4]
-	data.append(["<strong>Total</strong>",bruto2,pph2,komisi2,pv2])
+	data.append(["Total",bruto2,pph2,komisi2,pv2])
 	data.append(["","","","",""])
 
-	data.append(["<strong>Data Transaksi Koordinator</strong>","","","",""])
+	data.append(["Data Transaksi Koordinator","","","",""])
 	second = frappe.db.sql("""select dk.alamat,cmd.commision_value,cmd.pph,cmd.net_commision,cmd.pv
 		from `tabCommision Marketing Detail` cmd 
 		join `tabData Komisi` dk on cmd.parent=dk.name 
@@ -54,12 +52,12 @@ def execute(filters=None):
 		pph3=pph3+row[2]
 		komisi3 = komisi3+row[3]
 		pv3=pv3+row[4]
-	data.append(["<strong>Total</strong>",bruto3,pph3,komisi3,pv3])
+	data.append(["Total",bruto3,pph3,komisi3,pv3])
 	data.append(["","","","",""])
 
-	data.append(["<strong>Rekapitulasi Total</strong>","","","",""])
-	data.append(["<strong>Transaksi Secondary</strong>",bruto,pph,komisi,pv])
-	data.append(["<strong>Transaksi Primary</strong>",bruto2,pph2,komisi2,pv2])
-	data.append(["<strong>Transaksi Koordinator</strong>",bruto3,pph3,komisi3,pv3])
-	data.append(["<strong>Total</strong>",bruto+bruto2+bruto3,pph+pph2+pph3,komisi+komisi2+komisi3,pv+pv2+pv3])
+	data.append(["Rekapitulasi Total","","","",""])
+	data.append(["Transaksi Secondary",bruto,pph,komisi,pv])
+	data.append(["Transaksi Primary",bruto2,pph2,komisi2,pv2])
+	data.append(["Transaksi Koordinator",bruto3,pph3,komisi3,pv3])
+	data.append(["Total",bruto+bruto2+bruto3,pph+pph2+pph3,komisi+komisi2+komisi3,pv+pv2+pv3])
 	return columns, data

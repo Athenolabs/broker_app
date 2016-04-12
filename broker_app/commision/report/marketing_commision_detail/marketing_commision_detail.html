@@ -1,0 +1,35 @@
+<h2 class="text-center">Marketing Report</h2>
+<h4 class="text-center">{%= filters.marketing%}</h4>
+<h5 class="text-center">
+	{%= dateutil.str_to_user(filters.from_date) %}
+	{%= __("to") %}
+	{%= dateutil.str_to_user(filters.to_date) %}
+</h5>
+<hr>
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<th style="width: 40%">Keterangan</th>
+			<th style="width: 15%">Bruto</th>
+			<th style="width: 15%">PPH</th>
+			<th style="width: 15%">Komisi</th>
+			<th style="width: 15%">PV</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for(var i=0; i<data.length; i++) { %}
+			<tr>
+				{% if (data[i]["Komisi"]=="" && data[i]["Bruto"]=="" && data[i]["PPH"] && data[i]["PV"]) { %}
+					<td colspan="5"><strong>{%= data[i]["Keterangan"] %}</strong></td>
+				{% } else { %}
+					<td>{%= data[i]["Keterangan"] %}</td>
+					<td style="text-align: right">{%= format_currency(data[i]["Bruto"]) %}</td>
+					<td style="text-align: right">{%= format_currency(data[i]["PPH"]) %}</td>
+					<td style="text-align: right">{%= format_currency(data[i]["Komisi"]) %}</td>
+					<td style="text-align: right">{%= format_currency(data[i]["PV"]) %}</td>
+				{% } %}
+			</tr>
+		{% } %}
+	</tbody>
+</table>
+<p class="text-right text-muted">Printed On {%= dateutil.str_to_user(dateutil.get_datetime_as_string()) %}</p>
