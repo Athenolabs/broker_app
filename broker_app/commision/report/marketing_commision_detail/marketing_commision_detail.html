@@ -6,7 +6,7 @@
 	{%= dateutil.str_to_user(filters.to_date) %}
 </h5>
 <hr>
-{% var count=1 %}
+{% var count=1; %}
 <h3>{%= data[0]["Keterangan"] %}</h3>
 <table class="table table-bordered">
 	<thead>
@@ -31,10 +31,10 @@
 					<td>{%= row["Keterangan"] %}</td>
 				{% } %}
 				
-				<td style="text-align: right">{%= format_currency(data[i]["Bruto"]) %}</td>
-				<td style="text-align: right">{%= format_currency(data[i]["PPH"]) %}</td>
-				<td style="text-align: right">{%= format_currency(data[i]["Komisi"]) %}</td>
-				<td style="text-align: right">{%= format_currency(data[i]["PV"]) %}</td>
+				<td style="text-align: right">{%= format_currency(row["Bruto"]) %}</td>
+				<td style="text-align: right">{%= format_currency(row["PPH"]) %}</td>
+				<td style="text-align: right">{%= format_currency(row["Komisi"]) %}</td>
+				<td style="text-align: right">{%= format_currency(row["PV"]) %}</td>
 				{% count=count+1 %}
 			</tr>
 		{% } %}
