@@ -21,12 +21,14 @@
 	<tbody>
 		{% for(var i=count; i<data.length; i++) { %}
 			<tr>
-				{% var item = data[i]; %}
-				{% if (item["Keterangan"] == "Total" ) { %}
-					<td><strong>{%= item["Keterangan"] %}</strong></td>
+				{% 
+				var item = data[i]; 
+				if (item.Keterangan == "Total" ) { 
+				%}
+					<td><strong>{%= item.Keterangan %}</strong></td>
 					{% i = data.length %}
 				{% } else { %}
-					<td>{%= item["Keterangan"] %}</td>
+					<td>{%= item.Keterangan %}</td>
 				{% } %}
 				
 				<td style="text-align: right">{%= format_currency(data[i]["Bruto"]) %}</td>
