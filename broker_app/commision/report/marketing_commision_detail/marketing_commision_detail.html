@@ -21,75 +21,9 @@
 	<tbody>
 		{% for(var i=count; i<data.length; i++) { %}
 			<tr>
-				{% if (data[i]["Keterangan"]=="Total" && data[i+1]["Keterangan"]=="" && data[i+1]["PPH"]=="" && data[i+1]["PV"]=="" && data[i+1]["Bruto"]=="") { %}
-					<td colspan="5"><strong>{%= data[i]["Keterangan"] %}</strong></td>
-					{% i = data.length %}
-				{% } else { %}
+
 					<td>{%= data[i]["Keterangan"] %}</td>
-				{% } %}
-				
-				<td style="text-align: right">{%= format_currency(data[i]["Bruto"]) %}</td>
-				<td style="text-align: right">{%= format_currency(data[i]["PPH"]) %}</td>
-				<td style="text-align: right">{%= format_currency(data[i]["Komisi"]) %}</td>
-				<td style="text-align: right">{%= format_currency(data[i]["PV"]) %}</td>
-				{% count=count+1 %}
-			</tr>
-		{% } %}
-	</tbody>
-</table>
-{% count=count+3 %}
-<h3>{%= data[count-1]["Keterangan"] %}</h3>
-<table class="table table-bordered">
-	<thead>
-		<tr>
-			<th style="width: 40%">Keterangan</th>
-			<th style="width: 15%">Bruto</th>
-			<th style="width: 15%">PPH</th>
-			<th style="width: 15%">Komisi</th>
-			<th style="width: 15%">PV</th>
-		</tr>
-	</thead>
-	<tbody>
-		{% for(var i=count; i<data.length; i++) { %}
-			<tr>
-				{% if (data[i]["Keterangan"]=="Total" && data[i+1]["Keterangan"]=="" && data[i+1]["PPH"]=="" && data[i+1]["PV"]=="" && data[i+1]["Bruto"]=="") { %}
-					<td colspan="5"><strong>{%= data[i]["Keterangan"] %}</strong></td>
-					{% i = data.length %}
-				{% } else { %}
-					<td>{%= data[i]["Keterangan"] %}</td>
-				{% } %}
-				
-				<td style="text-align: right">{%= format_currency(data[i]["Bruto"]) %}</td>
-				<td style="text-align: right">{%= format_currency(data[i]["PPH"]) %}</td>
-				<td style="text-align: right">{%= format_currency(data[i]["Komisi"]) %}</td>
-				<td style="text-align: right">{%= format_currency(data[i]["PV"]) %}</td>
-				{% count=count+1 %}
-			</tr>
-		{% } %}
-	</tbody>
-</table>
-{% count=count+3 %}
-<h3>{%= data[count-1]["Keterangan"] %}</h3>
-<table class="table table-bordered">
-	<thead>
-		<tr>
-			<th style="width: 40%">Keterangan</th>
-			<th style="width: 15%">Bruto</th>
-			<th style="width: 15%">PPH</th>
-			<th style="width: 15%">Komisi</th>
-			<th style="width: 15%">PV</th>
-		</tr>
-	</thead>
-	<tbody>
-		{% for(var i=count; i<data.length; i++) { %}
-			<tr>
-				{% if (data[i]["Keterangan"]=="Total" && data[i+1]["Keterangan"]=="" && data[i+1]["PPH"]=="" && data[i+1]["PV"]=="" && data[i+1]["Bruto"]=="") { %}
-					<td colspan="5"><strong>{%= data[i]["Keterangan"] %}</strong></td>
-					{% i = data.length %}
-				{% } else { %}
-					<td>{%= data[i]["Keterangan"] %}</td>
-				{% } %}
-				
+
 				<td style="text-align: right">{%= format_currency(data[i]["Bruto"]) %}</td>
 				<td style="text-align: right">{%= format_currency(data[i]["PPH"]) %}</td>
 				<td style="text-align: right">{%= format_currency(data[i]["Komisi"]) %}</td>
