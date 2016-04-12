@@ -40,13 +40,14 @@
 				{% } %}
 				
 				
-				{% count=count+1 %}
+				{% count=count+1; %}
 			</tr>
 		{% } %}
 	</tbody>
 </table>
-{% count=count+3; %}
-<h3>{%= data[count-1]["Keterangan"] %}</h3>
+{% count=count+2; %}
+<h3>{%= data[count]["Keterangan"] %}</h3>
+{% count++; %}
 <table class="table table-bordered">
 	<thead>
 		<tr>
@@ -77,13 +78,14 @@
 					<td style="text-align: right">{%= format_currency(row["Komisi"]) %}</td>
 					<td style="text-align: right">{%= format_currency(row["PV"]) %}</td>
 				{% } %}
-				{% count=count+1 %}
+				{% count=count+1; %}
 			</tr>
 		{% } %}
 	</tbody>
 </table>
-{% count=count+3; %}
-<h3>{%= data[count-1]["Keterangan"] %}</h3>
+{% count=count+2; %}
+<h3>{%= data[count]["Keterangan"] %}</h3>
+{% count++; %}
 <table class="table table-bordered">
 	<thead>
 		<tr>
@@ -114,13 +116,14 @@
 					<td style="text-align: right">{%= format_currency(row["Komisi"]) %}</td>
 					<td style="text-align: right">{%= format_currency(row["PV"]) %}</td>
 				{% } %}
-				{% count=count+1 %}
+				{% count=count+1; %}
 			</tr>
 		{% } %}
 	</tbody>
 </table>
-{% count=count+3; %}
-<h3>{%= data[count-1]["Keterangan"] %}</h3>
+{% count=count+2; %}
+<h3>{%= data[count]["Keterangan"] %}</h3>
+{% count++; %}
 <table class="table table-bordered">
 	<thead>
 		<tr>
@@ -151,7 +154,7 @@
 					<td style="text-align: right">{%= format_currency(row["Komisi"]) %}</td>
 					<td style="text-align: right">{%= format_currency(row["PV"]) %}</td>
 				{% } %}
-				{% count=count+1 %}
+				{% count=count+1; %}
 			</tr>
 		{% } %}
 	</tbody>
