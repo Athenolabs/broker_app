@@ -19,16 +19,16 @@
 		</tr>
 	</thead>
 	<tbody>
-		{% for(var i=count; i<data.length; i++) { %}
+		{% for(var i=count,l=data.length; i<l; i++) { %}
 			<tr>
 				{% 
-				var item = data[i]; 
-				if (item.Keterangan == "Total" ) { 
+				var row = data[i]; 
+				if (row["Keterangan"] == "Total" ) { 
 				%}
-					<td><strong>{%= item.Keterangan %}</strong></td>
-					{% i = data.length %}
+					<td><strong>{%= row["Keterangan"] %}</strong></td>
+					{% i = l %}
 				{% } else { %}
-					<td>{%= item.Keterangan %}</td>
+					<td>{%= row["Keterangan"] %}</td>
 				{% } %}
 				
 				<td style="text-align: right">{%= format_currency(data[i]["Bruto"]) %}</td>
