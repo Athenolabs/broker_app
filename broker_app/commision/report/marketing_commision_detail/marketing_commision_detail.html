@@ -22,7 +22,7 @@
 		{% for(var i=count; i<data.length; i++) { %}
 			<tr>
 				{% if (data[i]["Keterangan"]=="Total" && data[i+1]["Keterangan"]=="" && data[i+1]["PPH"]=="" && data[i+1]["PV"]=="" && data[i+1]["Bruto"]=="") { %}
-					<td colspan="5"><strong>{%= data[i]["Keterangan"] %}</strong></td>
+					<td><strong>{%= data[i]["Keterangan"] %}</strong></td>
 					{% i = data.length %}
 				{% } else { %}
 					<td>{%= data[i]["Keterangan"] %}</td>
