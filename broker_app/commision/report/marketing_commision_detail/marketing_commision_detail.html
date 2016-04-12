@@ -46,7 +46,8 @@
 	</tbody>
 </table>
 {% count=count+2; %}
-<h3>{%= (data[count])["Keterangan"] %}</h3>
+{% var title=data[count]; %}
+<h3>{%= title["Keterangan"] %}</h3>
 {% count++; %}
 <table class="table table-bordered">
 	<thead>
@@ -84,7 +85,8 @@
 	</tbody>
 </table>
 {% count=count+2; %}
-<h3>{%= (data[count])["Keterangan"] %}</h3>
+{% title=data[count]; %}
+<h3>{%= title["Keterangan"] %}</h3>
 {% count++; %}
 <table class="table table-bordered">
 	<thead>
@@ -122,7 +124,8 @@
 	</tbody>
 </table>
 {% count=count+2; %}
-<h3>{%= (data[count])["Keterangan"] %}</h3>
+{% title=data[count]; %}
+<h3>{%= title["Keterangan"] %}</h3>
 {% count++; %}
 <table class="table table-bordered">
 	<thead>
