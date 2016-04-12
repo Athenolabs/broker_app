@@ -22,11 +22,11 @@
 		{% for(var i=count; i<data.length; i++) { %}
 			<tr>
 				{% var ket = data[i]["Keterangan"] %}
-				{% if (ket=="Total" ) { %}
-					<td><strong>{%= data[i]["Keterangan"] %}</strong></td>
+				{% if (ket == "Total" ) { %}
+					<td><strong>{%= ket %}</strong></td>
 					{% i = data.length %}
 				{% } else { %}
-					<td>{%= data[i]["Keterangan"] %}</td>
+					<td>{%= ket %}</td>
 				{% } %}
 				
 				<td style="text-align: right">{%= format_currency(data[i]["Bruto"]) %}</td>
