@@ -45,7 +45,7 @@
 		{% } %}
 	</tbody>
 </table>
-{% count=count+2; %}
+{% count++; %}
 {% var title=data[count]; %}
 <h3>{%= title["Keterangan"] %}</h3>
 {% count++; %}
@@ -84,7 +84,7 @@
 		{% } %}
 	</tbody>
 </table>
-{% count=count+2; %}
+{% count++; %}
 {% var title2=data[count]; %}
 <h3>{%= title2["Keterangan"] %}</h3>
 {% count++; %}
@@ -123,7 +123,7 @@
 		{% } %}
 	</tbody>
 </table>
-{% count=count+2; %}
+{% count++; %}
 <h3>Summary</h3>
 {% count++; %}
 <table class="table table-bordered">
