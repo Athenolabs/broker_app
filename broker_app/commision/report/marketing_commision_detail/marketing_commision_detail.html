@@ -38,8 +38,6 @@
 					<td style="text-align: right">{%= format_currency(row["Komisi"]) %}</td>
 					<td style="text-align: right">{%= format_currency(row["PV"]) %}</td>
 				{% } %}
-				
-				
 				{% count=count+1; %}
 			</tr>
 		{% } %}
@@ -47,7 +45,7 @@
 </table>
 {% count++; %}
 {% var title=data[count]; %}
-<h3>{%= title["Keterangan"] %}</h3>
+<h3>{%= title["Keterangan"] %}{%=count %}</h3>
 {% count++; %}
 <table class="table table-bordered">
 	<thead>
