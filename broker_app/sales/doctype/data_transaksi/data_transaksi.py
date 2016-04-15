@@ -57,7 +57,7 @@ class DataTransaksi(Document):
 			"owner": opts.owner or self.owner,
 			"subject": opts.subject,
 			"description": opts.description,
-			"starts_on":  self.contact_date,
+			"starts_on":  opts.starts_on,
 			"event_type": "Private",
 			"ref_type": self.doctype,
 			"ref_name": self.name
