@@ -65,6 +65,3 @@ class DataTransaksi(Document):
 
 		event.insert(ignore_permissions=True)
 
-		if frappe.db.exists("User", self.contact_by):
-			frappe.share.add("Event", event.name, self.contact_by,
-				flags={"ignore_share_permission": True})
