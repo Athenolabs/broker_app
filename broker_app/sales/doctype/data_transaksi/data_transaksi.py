@@ -5,7 +5,8 @@
 from __future__ import unicode_literals
 import frappe
 from frappe.model.document import Document
-
+from frappe import _
+from frappe.utils import cstr, now_datetime, cint, flt
 class DataTransaksi(Document):
 	def validate(self):
 		listing_count=0
@@ -23,7 +24,7 @@ class DataTransaksi(Document):
 			opts={
 				"owner": row.name,
 				"starts_on": row.tanggal,
-				"subject": ('Follow up Deadline ' + cstr(self.name)),
+				"subject": ('Follow up Deadline ' + self.name),
 				"description": row.note
 			}
 			self.delete_events()
@@ -51,20 +52,19 @@ class DataTransaksi(Document):
 	def _add_calendar_event(self, opts):
 		opts = frappe._dict(opts)
 
-		if self.contact_date:
-			event = frappe.get_doc({
-				"doctype": "Event",
-				"owner": opts.owner or self.owner,
-				"subject": opts.subject,
-				"description": opts.description,
-				"starts_on":  self.contact_date,
-				"event_type": "Private",
-				"ref_type": self.doctype,
-				"ref_name": self.name
-			})
+		event = frappe.get_doc({
+			"doctype": "Event",
+			"owner": opts.owner or self.owner,
+			"subject": opts.subject,
+			"description": opts.description,
+			"starts_on":  self.contact_date,
+			"event_type": "Private",
+			"ref_type": self.doctype,
+			"ref_name": self.name
+		})
 
-			event.insert(ignore_permissions=True)
+		event.insert(ignore_permissions=True)
 
-			if frappe.db.exists("User", self.contact_by):
-				frappe.share.add("Event", event.name, self.contact_by,
-					flags={"ignore_share_permission": True})
+		if frappe.db.exists("User", self.contact_by):
+			frappe.share.add("Event", event.name, self.contact_by,
+				flags={"ignore_share_permission": True})
