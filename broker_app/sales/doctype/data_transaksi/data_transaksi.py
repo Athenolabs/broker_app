@@ -37,7 +37,18 @@ class DataTransaksi(Document):
 				"subject": ('Follow up Deadline ' + cstr(self.name)),
 				"description": row.note
 			}	
-			self._add_calendar_event(opts)
+			opts = frappe._dict(opts)
+			event = frappe.get_doc({
+				"doctype": "Event",
+				"owner": opts.owner or self.owner,
+				"subject": opts.subject,
+				"description": opts.description,
+				"starts_on":  opts.starts_on,
+				"event_type": "Private",
+				"ref_type": self.doctype,
+				"ref_name": self.name
+			})
+			event.insert(ignore_permissions=True)
 
 	def delete_events(self):
 		events = frappe.db.sql_list("""select name from `tabEvent`
@@ -49,19 +60,5 @@ class DataTransaksi(Document):
 			frappe.db.sql("delete from `tabEvent Role` where parent in (%s)"
 				.format(", ".join(['%s']*len(events))), tuple(events))
 
-	def _add_calendar_event(self, opts):
-		opts = frappe._dict(opts)
 
-		event = frappe.get_doc({
-			"doctype": "Event",
-			"owner": opts.owner or self.owner,
-			"subject": opts.subject,
-			"description": opts.description,
-			"starts_on":  opts.starts_on,
-			"event_type": "Private",
-			"ref_type": self.doctype,
-			"ref_name": self.name
-		})
-
-		event.insert(ignore_permissions=True)
 
