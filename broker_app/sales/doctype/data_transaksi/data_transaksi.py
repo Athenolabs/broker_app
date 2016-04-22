@@ -31,17 +31,12 @@ class DataTransaksi(Document):
 
 	def on_submit(self):
 		for row in self.deadline:
-			opts={
-				"starts_on": row.tanggal,
-				"subject": ('Follow up Deadline ' + cstr(self.name)),
-				"description": row.note
-			}	
 			event = frappe.get_doc({
 				"doctype": "Event",
 				"owner": self.owner,
-				"subject": opts.subject,
-				"description": opts.description,
-				"starts_on":  opts.starts_on,
+				"subject": ('Follow up Deadline ' + cstr(self.name)),
+				"description": row.note,
+				"starts_on":  row.tanggal,
 				"event_type": "Private",
 				"ref_type": self.doctype,
 				"ref_name": self.name
