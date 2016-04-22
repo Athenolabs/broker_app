@@ -37,7 +37,6 @@ class DataTransaksi(Document):
 				"subject": ('Follow up Deadline ' + cstr(self.name)),
 				"description": row.note
 			}	
-			opts = frappe._dict(opts)
 			event = frappe.get_doc({
 				"doctype": "Event",
 				"owner": opts.owner or self.owner,
@@ -53,9 +52,8 @@ class DataTransaksi(Document):
 	def delete_events(self):
 		events = frappe.db.sql_list("""select name from `tabEvent`
 			where ref_type=%s and ref_name=%s""", (self.doctype, self.name))
-		if events:
-			frappe.db.sql("delete from `tabEvent` where name in (%s)"
-				.format(", ".join(['%s']*len(events))), tuple(events))
+		if len(events)>0:
+			frappe.db.sql("delete from `tabEvent` where ref_type=%s and ref_name=%s""", (self.doctype, self.name))
 
 			frappe.db.sql("delete from `tabEvent Role` where parent in (%s)"
 				.format(", ".join(['%s']*len(events))), tuple(events))
