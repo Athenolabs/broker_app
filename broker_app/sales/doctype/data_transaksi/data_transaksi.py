@@ -55,7 +55,7 @@ class DataTransaksi(Document):
 		if len(events)>0:
 			frappe.db.sql("delete from `tabEvent` where ref_type=%s and ref_name=%s""", (self.doctype, self.name))
 			for e in events:
-				frappe.db.sql("""delete from `tabEvent Role` where parent ="{}" """.format(e)
+				frappe.db.sql("""delete from `tabEvent Role` where parent ="{}" """.format(e))
 
 
 
