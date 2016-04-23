@@ -34,7 +34,7 @@ class DataTransaksi(Document):
 			event = frappe.get_doc({
 				"doctype": "Event",
 				"owner": self.owner,
-				"subject": ('Follow up Deadline '+self.alamat+' - ' + cstr(self.name)),
+				"subject": self.alamat,
 				"description": row.note,
 				"starts_on":  row.tanggal,
 				"event_type": "Private",
