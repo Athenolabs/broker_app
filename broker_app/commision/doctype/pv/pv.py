@@ -16,7 +16,7 @@ class PV(Document):
 		data = frappe.db.sql("""select commision from `tabJenjang Karir` where terget<={} and docstatus=1 order by commision asc""".format(total),as_list=1)
 		jk=50
 		for x in data:
-			jk = x[0]
+			jk = x
 		#jk = get_jk(total)
 		data = frappe.db.get("Marketing",{"name":self.marketing})
 		if jk>data.commision:
