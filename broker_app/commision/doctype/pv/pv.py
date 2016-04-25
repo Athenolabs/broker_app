@@ -8,15 +8,15 @@ from frappe.model.document import Document
 
 class PV(Document):
 	def on_submit(self):
-		data = frappe.db.sql("""select sum(point) from tabPV where marketing="{}" and docstatus=1 """.format(self.marketing),as_list=1)
+		data = frappe.db.sql("""select sum(point) from tabPV where marketing="{}" and docstatus<=1 """.format(self.marketing),as_list=1)
 		total=0
 		for x in data:
 			total = total+x[0]
 		#total = get_total_pv(self.marketing)
 		data = frappe.db.sql("""select commision from `tabJenjang Karir` where terget<={} and docstatus=1 order by commision asc""".format(total),as_list=1)
 		jk=50
+		frappe.throw("""{} ## {} """.format(data,total))
 		for x in data:
-			frappe.throw(x)
 			if x>jk:
 				jk = x
 		#jk = get_jk(total)
