@@ -13,9 +13,8 @@ class PV(Document):
 		for x in data:
 			total = total+x[0]
 		#total = get_total_pv(self.marketing)
-		data = frappe.db.sql("""select commision from `tabJenjang Karir` where terget<={} and docstatus=1 order by commision asc""".format(total),as_list=1)
+		data = frappe.db.sql("""select commision from `tabJenjang Karir` where terget<={}  order by commision asc""".format(total),as_list=1)
 		jk=50
-		frappe.throw("""{} ## {} """.format(data,total))
 		for x in data:
 			if x>jk:
 				jk = x
