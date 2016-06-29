@@ -175,7 +175,7 @@
  "max_attachments": 0, 
  "modified": "2016-03-17 22:17:05.743114", 
  "modified_by": "Administrator", 
- "module": "Sales", 
+ "module": "Transaction", 
  "name": "Primary Project", 
  "name_case": "", 
  "owner": "Administrator", 

@@ -600,7 +600,7 @@
  "max_attachments": 0, 
  "modified": "2016-02-27 11:08:19.690388", 
  "modified_by": "Administrator", 
- "module": "Sales", 
+ "module": "Transaction", 
  "name": "Marketing", 
  "name_case": "UPPER CASE", 
  "owner": "Administrator", 

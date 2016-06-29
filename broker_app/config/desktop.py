@@ -5,11 +5,11 @@ from frappe import _
 def get_data():
 	return [
 		{
-			"module_name": "Sales",
+			"module_name": "Transaction",
 			"color": "grey",
 			"icon": "octicon octicon-organization",
 			"type": "module",
-			"label": _("Sales")
+			"label": _("Transaction")
 		},                {
                         "module_name": "Administration",
                         "color": "grey",
