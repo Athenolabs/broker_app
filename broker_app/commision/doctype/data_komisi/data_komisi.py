@@ -38,7 +38,11 @@ class DataKomisi(Document):
 				marketing.tut=1/selling_count
 			elif marketing.type == "Koordinator":
 				marketing.tut=0
-
+		find=frappe.db.sql("""select count(1),name from `tabData Komisi` where docstatus<2 and data_transaksi='{}'""".format(doc.data_transaksi),as_list=1)
+		for row in find:
+			if row[0]==0:
+				frappe.throw("Transaksi sudah di gunakan pada document komisi {}".format(row[1]))
+		
 	def on_submit(self):
 		for marketing in self.commision_list:
 			if marketing.pv>0:

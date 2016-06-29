@@ -24,7 +24,7 @@ class DataTransaksi(Document):
 			opts={
 				"owner": row.name,
 				"starts_on": row.tanggal,
-				"subject": ('Follow up Deadline ' + self.name),
+				"subject": ('Follow up Deadline ' + self.alamat),
 				"description": row.note
 			}
 			self.delete_events()
