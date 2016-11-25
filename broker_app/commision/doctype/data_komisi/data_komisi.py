@@ -30,7 +30,7 @@ class DataKomisi(Document):
 			frappe.throw("Maximum Komisi adalah 100%")
 		for marketing in self.commision_list:
 			if marketing.type == "Listing" :
-				if self.type!="Jual Primary":
+				if self.type=="Jual Primary":
 					marketing.tut=0
 				else:
 					marketing.tut=1/listing_count
