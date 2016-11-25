@@ -34,11 +34,12 @@ class DataKomisi(Document):
 					marketing.tut=0
 				else:
 					marketing.tut=1/listing_count
+					#msgprint("tes {} = 1 / {}".format(marketing.tut,listing_count))
 			elif marketing.type == "Selling":
 				marketing.tut=1/selling_count
 			elif marketing.type == "Koordinator":
 				marketing.tut=0
-		find=frappe.db.sql("""select count(1),name from `tabData Komisi` where docstatus<2 and data_transaksi='{}'""".format(doc.data_transaksi),as_list=1)
+		find=frappe.db.sql("""select count(1),name from `tabData Komisi` where docstatus<2 and data_transaksi='{}'""".format(self.data_transaksi),as_list=1)
 		for row in find:
 			if row[0]==0:
 				frappe.throw("Transaksi sudah di gunakan pada document komisi {}".format(row[1]))
