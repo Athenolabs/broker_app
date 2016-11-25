@@ -41,7 +41,7 @@ class DataKomisi(Document):
 				marketing.tut=0
 		find=frappe.db.sql("""select count(1),name from `tabData Komisi` where docstatus<2 and data_transaksi='{}'""".format(self.data_transaksi),as_list=1)
 		for row in find:
-			if row[0]==0:
+			if row[0]=="0":
 				frappe.throw("Transaksi sudah di gunakan pada document komisi {}".format(row[1]))
 		
 	def on_submit(self):
@@ -104,11 +104,16 @@ class DataKomisi(Document):
 		frappe.db.sql("""update tabPV set docstatus=2 where data_komisi="{}" """.format(self.name),as_list=1)
 		frappe.db.sql("""update tabTUT set docstatus=2 where data_komisi="{}" """.format(self.name),as_list=1)
 def available_transaction(doctype, txt, searchfield, start, page_len, filters):
+	branch = ""
+	if filters.get("user") == "east.1sthome@gmail.com":
+		branch = " and dt.branch = '1st HOME EAST' "
+	elif  filters.get("user") == "info.1sthomeindonesia@gmail.com":
+		branch = " and dt.branch = '1st HOME WEST ' "
 	return frappe.db.sql("""select dt.name,dt.alamat from `tabData Transaksi` dt 
 		left join `tabData Komisi` dk on dk.data_transaksi=dt.name and dk.docstatus<2
-		where dk.name is NULL and dt.docstatus=1 and (dt.name like %(txt)s
+		where dk.name is NULL and dt.docstatus=1 {} and (dt.name like %(txt)s 
 				or dt.alamat like %(txt)s)
-		limit %(start)s, %(page_len)s""".format(**{
+		limit %(start)s, %(page_len)s""".format(branch).format(**{
 			'key': searchfield
 		}), {
 			'txt': "%%%s%%" % txt,
