@@ -108,7 +108,7 @@ def available_transaction(doctype, txt, searchfield, start, page_len, filters):
 	if filters.get("user") == "east.1sthome@gmail.com":
 		branch = " and dt.branch = '1st HOME EAST' "
 	elif  filters.get("user") == "info.1sthomeindonesia@gmail.com":
-		branch = " and dt.branch = '1st HOME WEST ' "
+		branch = " and dt.branch = '1st HOME WEST' "
 	return frappe.db.sql("""select dt.name,dt.alamat from `tabData Transaksi` dt 
 		left join `tabData Komisi` dk on dk.data_transaksi=dt.name and dk.docstatus<2
 		where dk.name is NULL and dt.docstatus=1 {} and (dt.name like %(txt)s 
